@@ -3,12 +3,14 @@ package main
 import (
 	"fmt"
 	"os"
+	"io/ioutil"
+	"encoding/json"
 	//"github.com/tapirs/tfjson"
 )
 
 func main() {
   options(os.Args)
-	tunit()
+	tunit(os.Args[1])
 }
 
 func options(args []string) {
@@ -18,8 +20,23 @@ func options(args []string) {
 	}
 }
 
-func tunit() {
-	
+func tunit(jsonfile string) {
+	readJson(jsonfile)
+}
+
+func readJson(jsonfile string) (map[string]interface{}, error) {
+	jf, err := os.Open(jsonfile)
+	if err != nil {
+		return nil, err
+	}
+	defer jf.Close()
+
+	byteValue, _ := ioutil.ReadAll(jf)
+
+	var result map[string]interface{}
+  json.Unmarshal([]byte(byteValue), &result)
+
+	return result, nil
 }
 // func tunit() {
 // 	if len(os.Args) != 2 {

@@ -1,0 +1,24 @@
+{
+    "aws_vpc.main": {
+        "arn": "",
+        "assign_generated_ipv6_cidr_block": "false",
+        "cidr_block": "10.0.0.0/16",
+        "default_network_acl_id": "",
+        "default_route_table_id": "",
+        "default_security_group_id": "",
+        "destroy": false,
+        "destroy_tainted": false,
+        "dhcp_options_id": "",
+        "enable_classiclink": "",
+        "enable_classiclink_dns_support": "",
+        "enable_dns_hostnames": "",
+        "enable_dns_support": "true",
+        "id": "",
+        "instance_tenancy": "default",
+        "ipv6_association_id": "",
+        "ipv6_cidr_block": "",
+        "main_route_table_id": "",
+        "owner_id": ""
+    },
+    "destroy": false
+}
