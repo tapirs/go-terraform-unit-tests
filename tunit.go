@@ -10,18 +10,31 @@ import (
 
 func main() {
   options(os.Args)
-	tunit(os.Args[1])
+	tunit(os.Args[1], os.Args[2])
 }
 
 func options(args []string) {
-	if len(args) != 2 {
+	if len(args) < 2 {
 		fmt.Fprintln(os.Stderr, "usage: tunit terraformplan.json")
 		os.Exit(1)
 	}
 }
 
-func tunit(jsonfile string) {
-	readJson(jsonfile)
+func tunit(jsonfile string, testfile string) (error) {
+	planjson,err := readJson(jsonfile)
+	if err != nil {
+		return err
+	}
+	fmt.Println(planjson)
+
+	tests, err := readTests(testfile)
+
+	if err != nil {
+		return err
+	}
+	fmt.Println(tests)
+
+	return nil
 }
 
 func readJson(jsonfile string) (map[string]interface{}, error) {
@@ -37,6 +50,10 @@ func readJson(jsonfile string) (map[string]interface{}, error) {
   json.Unmarshal([]byte(byteValue), &result)
 
 	return result, nil
+}
+
+func readTests(testfile string) (test, error) {
+	return *new(test),  nil
 }
 // func tunit() {
 // 	if len(os.Args) != 2 {
